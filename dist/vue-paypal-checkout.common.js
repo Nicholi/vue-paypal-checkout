@@ -263,6 +263,10 @@ var script = {
     onCancel: function onCancel(data) {
       var vue = this;
       vue.$emit('payment-cancelled', data);
+    },
+    onError: function onError(err) {
+      var vue = this;
+      vue.$emit('payment-error', err);
     }
   },
   mounted: function mounted() {
@@ -286,7 +290,10 @@ var script = {
       onAuthorize: vue.onAuthorize,
 
       // Pass a function to be called when the customer cancels the payment
-      onCancel: vue.onCancel
+      onCancel: vue.onCancel,
+
+      // Pass a function to be called if an error occurs
+      onError: vue.onError
     }, assignTo(vue, propTypes.BUTTON));
 
     paypal.Button.render(button, vue.$el);
@@ -319,7 +326,7 @@ function __vue_normalize__(template, style, script$$1, scope, functional, module
   var component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
 
   // For security concerns, we use only base name in production mode.
-  component.__file = "/home/khoa/src/github.com/khoanguyen96/paypal/src/components/PayPalCheckout.vue";
+  component.__file = "/home/nicholi/Documents/node/vue-paypal-checkout/src/components/PayPalCheckout.vue";
 
   if (!component.render) {
     component.render = template.render;
